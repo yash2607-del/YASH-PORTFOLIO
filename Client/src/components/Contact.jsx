@@ -379,9 +379,9 @@ const Contact = () => {
           </div>
 
           {/* RIGHT SIDE – CONTACT INFO + SOCIAL */}
-          <div className="col-lg-5" ref={socialRef} style={{ marginTop: 20 }}>
+          <div className="col-lg-5" ref={socialRef}>
             {/* Info Cards */}
-            <div className="mb-5">
+            <div className="mb-4">
               {[
                 { icon: <HiOutlineMail />, label: 'Email', value: 'yashr1624@gmail.com' },
                 { icon: <HiOutlinePhone />, label: 'Phone', value: '+91 9013905981' },
@@ -394,7 +394,7 @@ const Contact = () => {
                     background: '#fff',
                     borderRadius: 20,
                     padding: '20px 25px',
-                    marginBottom: i === 2 ? 90 : 35,
+                    marginBottom: i === 2 ? 30 : 25,
                     boxShadow: '0 8px 25px rgba(0,0,0,0.08)',
                     display: 'flex',
                     alignItems: 'center',
@@ -435,7 +435,7 @@ const Contact = () => {
               style={{
                 background: '#fff',
                 borderRadius: 20,
-                padding: '30px',
+                padding: '24px 30px',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
               }}
             >
@@ -444,7 +444,7 @@ const Contact = () => {
                   fontSize: 22,
                   fontWeight: 700,
                   color: '#222',
-                  marginBottom: 20,
+                  marginBottom: 16,
                   fontFamily: 'Poppins, Inter, Arial, sans-serif',
                   textAlign: 'center'
                 }}
@@ -487,7 +487,8 @@ const Contact = () => {
                   fontSize: 13,
                   color: '#999',
                   textAlign: 'center',
-                  marginTop: 20
+                  marginTop: 14,
+                  marginBottom: 0
                 }}
               >
                 Let's connect and build something amazing together
