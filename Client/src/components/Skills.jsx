@@ -137,29 +137,64 @@ const Skills = () => {
         ))}
       </div>
       <div className="container" style={{ maxWidth: 1100 }}>
-        <div ref={headingRef} className="text-center mb-4">
-          <h2 className="fw-bold" style={{ color: '#222', fontSize: 36 }}>Skills</h2>
-          <div style={{ width: 90, height: 4, background: 'linear-gradient(90deg, #ff9800, #ffb300)', borderRadius: 4, margin: '12px auto 0' }} />
+        <div ref={headingRef} className="text-center mb-5">
+          <h2 
+            className="fw-bold mb-3"
+            style={{
+              fontFamily: 'Poppins, Inter, Arial, sans-serif',
+              fontSize: 48,
+              color: '#222',
+              letterSpacing: 1.2
+            }}
+          >
+            Skills & Technologies
+          </h2>
+          <p style={{
+            fontSize: 18,
+            color: '#666',
+            fontFamily: 'Inter, Arial, sans-serif',
+            marginBottom: 20
+          }}>
+            My technical expertise across various domains
+          </p>
+          <div
+            style={{
+              width: 80,
+              height: 4,
+              background: 'linear-gradient(90deg, #ff9800 0%, #ffb300 100%)',
+              margin: '0 auto',
+              borderRadius: 4
+            }}
+          />
         </div>
 
         {groups.map((group, gi) => (
-          <div key={gi} className="mb-4">
-            <div className="d-flex align-items-center justify-content-center mb-3">
-              <span
-                style={{
-                  background: 'rgba(255,152,0,0.1)',
-                  color: '#ff9800',
-                  fontWeight: 700,
-                  letterSpacing: 0.4,
-                  padding: '8px 14px',
-                  borderRadius: 999,
-                  border: '1px solid rgba(255,152,0,0.35)'
-                }}
-              >
+          <div key={gi} className="mb-5">
+            <div className="d-flex align-items-center justify-content-start mb-3">
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+                background: 'linear-gradient(135deg, #ff9800, #ffb300)',
+                color: '#fff',
+                fontWeight: 700,
+                fontSize: 18,
+                letterSpacing: 0.5,
+                padding: '12px 24px',
+                borderRadius: 16,
+                boxShadow: '0 4px 15px rgba(255,152,0,0.3)',
+                fontFamily: 'Poppins, Inter, Arial, sans-serif'
+              }}>
+                <div style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: '#fff'
+                }} />
                 {group.title}
-              </span>
+              </div>
             </div>
-            <div ref={(el) => (chipRowsRef.current[gi] = el)} className="d-flex flex-wrap gap-2 justify-content-center">
+            <div ref={(el) => (chipRowsRef.current[gi] = el)} className="d-flex flex-wrap gap-3 justify-content-start" style={{ paddingLeft: 8 }}>
               {group.items.map((it, ii) => {
                 const Icon = it.icon;
                 return (
@@ -167,24 +202,38 @@ const Skills = () => {
                     key={ii}
                     className="skill-chip d-inline-flex align-items-center"
                     style={{
-                      background: 'linear-gradient(135deg, #ff9800 0%, #ffb300 100%)',
-                      color: '#fff',
-                      padding: '10px 14px',
-                      borderRadius: 12,
-                      fontWeight: 700,
-                      boxShadow: '0 8px 20px rgba(255,152,0,0.25)',
-                      border: '1px solid rgba(255,255,255,0.35)',
+                      background: '#fff',
+                      color: '#333',
+                      padding: '14px 20px',
+                      borderRadius: 14,
+                      fontWeight: 600,
+                      fontSize: 15,
+                      boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
+                      border: '2px solid rgba(255,152,0,0.2)',
                       transform: 'translateZ(0)',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                      transition: 'all 0.3s ease',
+                      fontFamily: 'Inter, Arial, sans-serif'
                     }}
                     onMouseEnter={(e) => {
-                      gsap.to(e.currentTarget, { y: -2, boxShadow: '0 10px 24px rgba(255,152,0,0.38)', duration: 0.2 });
+                      gsap.to(e.currentTarget, { 
+                        y: -4, 
+                        scale: 1.05,
+                        boxShadow: '0 10px 25px rgba(255,152,0,0.25)',
+                        borderColor: '#ff9800',
+                        duration: 0.2 
+                      });
                     }}
                     onMouseLeave={(e) => {
-                      gsap.to(e.currentTarget, { y: 0, boxShadow: '0 8px 20px rgba(255,152,0,0.25)', duration: 0.2 });
+                      gsap.to(e.currentTarget, { 
+                        y: 0, 
+                        scale: 1,
+                        boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
+                        borderColor: 'rgba(255,152,0,0.2)',
+                        duration: 0.2 
+                      });
                     }}
                   >
-                    <Icon size={18} style={{ marginRight: 8 }} /> {it.name}
+                    <Icon size={20} style={{ marginRight: 10, color: '#ff9800' }} /> {it.name}
                   </span>
                 );
               })}

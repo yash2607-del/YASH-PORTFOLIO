@@ -21,6 +21,7 @@ const Experience = () => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardRef = useRef(null);
+  const dscCardRef = useRef(null);
   const modalRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -99,6 +100,32 @@ const Experience = () => {
           ease: 'back.out(1.6)',
           scrollTrigger: {
             trigger: cardEl,
+            start: 'top 85%',
+            once: true
+          },
+        }
+      );
+    }
+
+    if (dscCardRef.current) {
+      const dscCardEl = dscCardRef.current.querySelector('.exp-card') || dscCardRef.current;
+      gsap.fromTo(
+        dscCardEl,
+        {
+          opacity: 0,
+          y: 24,
+          rotationX: -22,
+          transformPerspective: 800,
+          transformOrigin: 'top center'
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.85,
+          ease: 'back.out(1.6)',
+          scrollTrigger: {
+            trigger: dscCardEl,
             start: 'top 85%',
             once: true
           },
@@ -205,7 +232,7 @@ const Experience = () => {
             fontFamily: 'Inter, Arial, sans-serif',
             marginBottom: 20
           }}>
-            My professional journey in web development
+            Professional Highlights
           </p>
           <div
             style={{
@@ -218,20 +245,21 @@ const Experience = () => {
           />
         </div>
 
-        {/* Experience Card */}
-        <div ref={cardRef}>
-          <div
-            className="card border-0 exp-card"
+        {/* Experience Cards Row */}
+        <div className="row justify-content-center align-items-stretch g-4" ref={cardRef}>
+          {/* Internship Card */}
+          <div className="col-12 col-md-6 d-flex">
+            <div
+              className="card border-0 exp-card h-100 w-100"
             style={{
               background: '#fff',
               borderRadius: 24,
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(255,152,0,0.12)',
               marginBottom: 30,
-              width: '100%',
-              maxWidth: 420,
-              marginLeft: 'auto',
-              marginRight: 'auto',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               transform: 'perspective(1000px)',
               transformStyle: 'preserve-3d',
               transition: 'box-shadow 0.3s ease'
@@ -265,7 +293,7 @@ const Experience = () => {
               });
             }}
           >
-            {/* Header */}
+              {/* Header */}
             <div
               style={{
                 background: experience.gradient,
@@ -363,40 +391,82 @@ const Experience = () => {
               </div>
             </div>
 
-            {/* Body (compact summary; full details in modal) */}
-            <div style={{ padding: '24px 28px' }}>
-              <div style={{ marginBottom: 12 }}>
-                <p style={{ margin: 0, color: '#444', fontSize: 15, lineHeight: 1.6 }}>
-                  {experience.summary}
-                </p>
-              </div>
+              {/* Body (compact summary; full details in modal) */}
+              <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ marginBottom: 12 }}>
+                  <p style={{ margin: 0, color: '#444', fontSize: 15, lineHeight: 1.6 }}>
+                    {experience.summary}
+                  </p>
+                </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <button
-                  className="btn fw-bold"
-                  style={{
-                    background: 'linear-gradient(135deg, #ff9800 0%, #ffb300 100%)',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 12,
-                    padding: '12px 20px',
-                    fontSize: 15,
-                    boxShadow: '0 6px 20px rgba(255,152,0,0.25)',
-                    transition: 'all 0.3s ease',
-                    fontWeight: 700
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(255,152,0,0.35)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(255,152,0,0.25)';
-                  }}
-                  onClick={() => setShowModal(true)}
-                >
-                  View Full Details →
-                </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 'auto' }}>
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <a
+                    href="https://www.lmpowersolution.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn fw-bold"
+                    style={{
+                      flex: 1,
+                      background: 'linear-gradient(135deg, #ff9800 0%, #ffb300 100%)',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 12,
+                      padding: '12px 16px',
+                      fontSize: 14,
+                      boxShadow: '0 6px 20px rgba(255,152,0,0.25)',
+                      transition: 'all 0.3s ease',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 6
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(255,152,0,0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255,152,0,0.25)';
+                    }}
+                  >
+                    <FaExternalLinkAlt size={13} />
+                    View Live
+                  </a>
+
+                  <button
+                    className="btn fw-bold"
+                    style={{
+                      flex: 1,
+                      background: '#fff',
+                      color: '#ff9800',
+                      border: '2px solid #ff9800',
+                      borderRadius: 12,
+                      padding: '12px 16px',
+                      fontSize: 14,
+                      boxShadow: '0 4px 15px rgba(255,152,0,0.15)',
+                      transition: 'all 0.3s ease',
+                      fontWeight: 700
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'linear-gradient(135deg, #ff9800, #ffb300)';
+                      e.currentTarget.style.color = '#fff';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255,152,0,0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#fff';
+                      e.currentTarget.style.color = '#ff9800';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255,152,0,0.15)';
+                    }}
+                    onClick={() => setShowModal(true)}
+                  >
+                    Full Details
+                  </button>
+                </div>
 
                 <div style={{ display: 'flex', gap: 10 }}>
                   {experience.offerLetter && (
@@ -479,7 +549,221 @@ const Experience = () => {
                 </div>
               </div>
 
-              {/* No inline details now; handled by modal */}
+                {/* No inline details now; handled by modal */}
+              </div>
+            </div>
+          </div>
+
+          {/* DSC Club Management Head Card */}
+          <div ref={dscCardRef} className="col-12 col-md-6 d-flex">
+            <div
+              className="card border-0 exp-card h-100 w-100"
+              style={{
+                background: '#fff',
+                borderRadius: 24,
+                overflow: 'hidden',
+                boxShadow: '0 10px 40px rgba(255,152,0,0.12)',
+                marginBottom: 30,
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transform: 'perspective(1000px)',
+                transformStyle: 'preserve-3d',
+                transition: 'box-shadow 0.3s ease'
+              }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                
+                gsap.to(e.currentTarget, {
+                  rotationX: rotateX,
+                  rotationY: rotateY,
+                  y: -8,
+                  boxShadow: '0 20px 60px rgba(255,152,0,0.25)',
+                  duration: 0.3,
+                  ease: 'power2.out'
+                });
+              }}
+              onMouseLeave={(e) => {
+                gsap.to(e.currentTarget, {
+                  rotationX: 0,
+                  rotationY: 0,
+                  y: 0,
+                  boxShadow: '0 10px 40px rgba(255,152,0,0.12)',
+                  duration: 0.5,
+                  ease: 'power2.out'
+                });
+              }}
+            >
+            {/* Header */}
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #ff9800 0%, #ffb300 100%)',
+                padding: '24px 28px',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+            >
+              <div style={{
+                position: 'absolute',
+                top: -50,
+                right: -50,
+                width: 200,
+                height: 200,
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.08)'
+              }} />
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 10 }}>
+                  <div style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.18)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#fff',
+                    border: '2px solid rgba(255,255,255,0.25)'
+                  }}>
+                    <FaLaptopCode size={26} />
+                  </div>
+
+                  <div>
+                    <h3 style={{
+                      color: '#fff',
+                      fontSize: 20,
+                      fontWeight: 700,
+                      margin: 0,
+                      fontFamily: 'Poppins, Inter, Arial, sans-serif'
+                    }}>
+                      Management Head
+                    </h3>
+                    <p style={{
+                      color: 'rgba(255,255,255,0.95)',
+                      fontSize: 14,
+                      fontWeight: 600,
+                      margin: 0
+                    }}>
+                      Developer Student Club (DSC)
+                    </p>
+                    <p style={{
+                      color: 'rgba(255,255,255,0.85)',
+                      fontSize: 12,
+                      fontWeight: 500,
+                      margin: 0,
+                      marginTop: 2
+                    }}>
+                      Jaypee Institute of Information Technology
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: 'rgba(255,255,255,0.12)',
+                    padding: '8px 14px',
+                    borderRadius: 20,
+                    color: '#fff',
+                    fontWeight: 600,
+                    fontSize: 14
+                  }}>
+                    <FaCalendarAlt size={14} /> July 2025 – Present
+                  </div>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: 'rgba(255,255,255,0.12)',
+                    padding: '8px 14px',
+                    borderRadius: 20,
+                    color: '#fff',
+                    fontWeight: 600,
+                    fontSize: 14
+                  }}>
+                    <FaMapMarkerAlt size={14} /> Noida
+                  </div>
+
+                  <div style={{
+                    background: '#fff',
+                    padding: '8px 14px',
+                    borderRadius: 20,
+                    color: '#ff9800',
+                    fontWeight: 700,
+                    fontSize: 13
+                  }}>
+                    Club Responsibility
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              {/* Body */}
+              <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ marginBottom: 16 }}>
+                  <p style={{ margin: 0, color: '#444', fontSize: 15, lineHeight: 1.6 }}>
+                    Managed SIH internal rounds, hackathons, and technical workshops; coordinated logistics and
+                    communication for 200+ students. Active DSC member since July 2024; Management Head (2025–26).
+                  </p>
+                </div>
+
+                {/* Stats Grid */}
+                <div style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(2, 1fr)', 
+                  gap: 12,
+                  marginBottom: 12
+                }}>
+                  <div style={{
+                    background: 'linear-gradient(135deg, #ffe4cc, #ffd4a3)',
+                    borderRadius: 12,
+                    padding: '14px 16px',
+                    textAlign: 'center',
+                    border: '2px solid rgba(255,152,0,0.15)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'default'
+                  }}
+                  onMouseEnter={(e) => {
+                    gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 });
+                  }}
+                  onMouseLeave={(e) => {
+                    gsap.to(e.currentTarget, { scale: 1, duration: 0.2 });
+                  }}
+                  >
+                    <div style={{ fontSize: 24, fontWeight: 800, color: '#ff9800', marginBottom: 4 }}>10+</div>
+                    <div style={{ fontSize: 12, color: '#666', fontWeight: 600 }}>Events</div>
+                  </div>
+
+                  <div style={{
+                    background: 'linear-gradient(135deg, #ffe4cc, #ffd4a3)',
+                    borderRadius: 12,
+                    padding: '14px 16px',
+                    textAlign: 'center',
+                    border: '2px solid rgba(255,152,0,0.15)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'default'
+                  }}
+                  onMouseEnter={(e) => {
+                    gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 });
+                  }}
+                  onMouseLeave={(e) => {
+                    gsap.to(e.currentTarget, { scale: 1, duration: 0.2 });
+                  }}
+                  >
+                    <div style={{ fontSize: 24, fontWeight: 800, color: '#ff9800', marginBottom: 4 }}>200+</div>
+                    <div style={{ fontSize: 12, color: '#666', fontWeight: 600 }}>Participants</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
